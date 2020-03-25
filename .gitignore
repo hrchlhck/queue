@@ -1,4 +1,9 @@
 bin/
 obj/
-*.csproj
 .vs/
+out/
+.idea/
+
+*.csproj
+*.xml
+*.iml

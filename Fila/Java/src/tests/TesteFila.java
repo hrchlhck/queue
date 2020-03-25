@@ -25,7 +25,7 @@ public class TesteFila {
     }
 
     private static void testarMetodoInserir(Fila f){
-        f.insere(2);
+        f.Insere(2);
         f.insere(4);
         f.insere(8);
         f.insere(16);

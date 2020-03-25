@@ -1,11 +1,9 @@
-package Classes;
-
 public class Fila {
     private int primeiro;
     private int ultimo;
     private int[] dados;
-    private int quantidadeElementos;
     private int tamanho;
+    private int quantidadeElementos;
 
     public Fila(int tamanho) {
         dados = new int[tamanho];
@@ -15,60 +13,72 @@ public class Fila {
         this.tamanho = tamanho;
     }
 
-    public boolean cheia() {
+    public bool Cheia() {
         return quantidadeElementos == tamanho;
     }
 
-    public boolean vazia() {
+    public bool Vazia() {
         return quantidadeElementos <= 0;
     }
 
-    public void insere(int elem){
-        if(!cheia()){
-            try{
-                quantidadeElementos++;
-                if(primeiro == -1 || ultimo == -1){
-                    primeiro++;
-                    ultimo++;
-                    dados[primeiro] = elem;
-                } else {
+    public void Insere(int elem) {
+        if (!Cheia())
+        {
+            quantidadeElementos++;
+            if(primeiro <= -1 && ultimo <= -1)
+            {
+                primeiro++;
+                ultimo++;
+                dados[primeiro] = elem;
+            } else
+            {
+                if(ultimo == quantidadeElementos - 1)
+                {
+                    ultimo = 0;
+                    dados[ultimo] = elem;
+                } else
+                {
                     ultimo++;
                     dados[ultimo] = elem;
                 }
-            } catch (IndexOutOfBoundsException e){
-                System.out.println("Fila cheia");
             }
-        } else {
-            System.out.println("Nao foi possivel insercao de elemento, pois a fila esta cheia");
+
+        } else
+        {
+            System.out.println("Não é possível inserir o valor na fila. Ela está cheia.");
         }
     }
 
-    public int remove() {
-        int aux = 0;
-        if(!vazia()){
+    public int Remove()
+    {
+        int aux;
+        if (!Vazia())
+        {
             quantidadeElementos--;
-            try{
-                if(primeiro != ultimo){
-                    aux = dados[primeiro];
-                    primeiro++;
-                } else {
-                    aux = dados[primeiro];
-                    primeiro = -1;
-                    ultimo = -1;
-                }
-            }catch (IndexOutOfBoundsException e){
-                System.out.println("Classes.Fila vazia");
+            if(primeiro == quantidadeElementos - 1)
+            {
+                aux = dados[primeiro];
+                primeiro = 0;
+                return aux;
+            } else
+            {
+                aux = dados[primeiro];
+                primeiro++;
+                return aux;
             }
-            return aux;
-        } else {
-            System.out.println("Nao foi possivel remocao de elemento, pois a fila esta vazia");
+        } else
+        {
+            System.out.println("Pilha vazia. Não foi possível remover elemento.");
             return -1;
         }
     }
 
-    public void imprime() {
-        for(int i = primeiro; i <= ultimo; i++){
+    public void Imprime()
+    {
+        for(int i = primeiro; i < ultimo + 1; i++)
+        {
             System.out.println(dados[i]);
         }
     }
+}
 }

@@ -1,3 +1,5 @@
+package classes;
+
 public class Fila {
     private int primeiro;
     private int ultimo;
@@ -13,72 +15,61 @@ public class Fila {
         this.tamanho = tamanho;
     }
 
-    public bool Cheia() {
+    public boolean Cheia() {
         return quantidadeElementos == tamanho;
     }
 
-    public bool Vazia() {
+    public boolean Vazia() {
         return quantidadeElementos <= 0;
     }
 
     public void Insere(int elem) {
-        if (!Cheia())
-        {
-            quantidadeElementos++;
-            if(primeiro <= -1 && ultimo <= -1)
-            {
-                primeiro++;
-                ultimo++;
+        if (!Cheia()) {
+            if(primeiro <= -1 || ultimo <= -1) {
+                primeiro = 0;
+                ultimo = 0;
                 dados[primeiro] = elem;
-            } else
-            {
-                if(ultimo == quantidadeElementos - 1)
-                {
+            } else {
+                if(ultimo == tamanho - 1) {
                     ultimo = 0;
-                    dados[ultimo] = elem;
-                } else
-                {
+                } else {
                     ultimo++;
-                    dados[ultimo] = elem;
                 }
+                dados[ultimo] = elem;
             }
-
-        } else
-        {
-            System.out.println("Não é possível inserir o valor na fila. Ela está cheia.");
+            quantidadeElementos++;
+        } else {
+            System.out.println("Não é possível inserir o valor " + elem + " na fila. Ela está cheia.");
         }
     }
 
-    public int Remove()
-    {
+    public int Remove() {
         int aux;
-        if (!Vazia())
-        {
+        if (!Vazia()) {
             quantidadeElementos--;
-            if(primeiro == quantidadeElementos - 1)
-            {
+            if(primeiro == tamanho) {
                 aux = dados[primeiro];
                 primeiro = 0;
                 return aux;
-            } else
-            {
+            } else {
                 aux = dados[primeiro];
                 primeiro++;
                 return aux;
             }
-        } else
-        {
-            System.out.println("Pilha vazia. Não foi possível remover elemento.");
+        } else {
+            System.out.println("Fila vazia. Não foi possível executar o método.");
             return -1;
         }
     }
 
-    public void Imprime()
-    {
-        for(int i = primeiro; i < ultimo + 1; i++)
-        {
+    public void Imprime() {
+        for(int i = primeiro; i < quantidadeElementos; i++){
             System.out.println(dados[i]);
         }
     }
+
+    public int getQuantidadeElementos() {
+        return this.quantidadeElementos;
+    }
 }
-}
+

@@ -1,6 +1,6 @@
-package Testes;
+package tests;
 
-import Classes.Fila;
+import classes.Fila;
 
 public class TesteFila {
     private static int tamanho = 5;
@@ -26,27 +26,27 @@ public class TesteFila {
 
     private static void testarMetodoInserir(Fila f){
         f.Insere(2);
-        f.insere(4);
-        f.insere(8);
-        f.insere(16);
-        f.insere(32);
+        f.Insere(4);
+        f.Insere(8);
+        f.Insere(16);
+        f.Insere(32);
     }
 
     private static void testarMetodoImprimeSemRemocao(Fila f) {
-        f.imprime();
+        f.Imprime();
     }
 
     private static void testarMetodoImprimeComRemocao(Fila f){
-        f.remove();
-        f.remove();
-        f.imprime();
+        f.Remove();
+        f.Remove();
+        f.Imprime();
     }
 
     private static void testarMetodoImprimeComRemocaoEInsercao(Fila f){
-        f.insere(100);
-        f.imprime();
+        f.Insere(100);
+        f.Imprime();
 
-        f.insere(9);
-        f.imprime();
+        f.Insere(9);
+        f.Imprime();
     }
 }

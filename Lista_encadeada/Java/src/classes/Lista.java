@@ -24,7 +24,7 @@ public class Lista {
     }
 
     public void insereDepois(Node node, int info){
-        for(Node n = Lista.getProximo(); n != null; n = n.getProximo()){
+        for(Node n = Lista; n != null; n = n.getProximo()){
             if(n == node){
                 Node aux = Lista;
                 Node _node = new Node();
@@ -35,8 +35,9 @@ public class Lista {
     }
 
     public void insereUltimo(int info){
-        Lista = new Node();
-        Lista.setInfo(info);
+        Node novo = new Node();
+        novo.setInfo(info);
+        Lista.setProximo(novo);
     }
 
     public void insereOrdenado(int info){
@@ -44,23 +45,37 @@ public class Lista {
     }
 
     public Node removePrimeiro() {
-        return null;
+        Node itemRemovido = Lista;
+        Lista = Lista.getProximo();
+        return itemRemovido;
     }
 
     public Node removeUltimo(){
-        return null;
+        Node aux = null;
+        for(Node node = Lista; node != null; node = Lista.getProximo()){
+            if(node.getProximo() == null){
+                aux = node;
+            }
+        }
+        return aux;
     }
 
     public Node remove(Node node){
-        return null;
+        Node aux = null;
+        for(Node n = Lista; n != null; n = Lista.getProximo()){
+            if(node.getInfo() == n.getInfo()){
+                aux = n;
+            }
+        }
+        return aux;
     }
 
     public void imprime() {
         if(vazia()){
             System.out.println("Lista vazia");
         } else {
-            for(Node node = Lista.getProximo(); node != null; node = Lista.getProximo()){
-                System.out.println(Lista.getInfo());
+            for(Node n = Lista; n != null; n = n.getProximo()){
+                System.out.println(n.getInfo());
             }
         }
     }

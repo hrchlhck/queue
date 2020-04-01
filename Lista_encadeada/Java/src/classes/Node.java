@@ -20,6 +20,7 @@ public class Node {
     public void setInfo(int info){
         this.info = info;
     }
+
     public int getInfo() {
         return this.info;
     }

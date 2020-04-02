@@ -2,19 +2,19 @@ package classes;
 
 public class Node {
     private Integer info;
-    private Node proximo;
+    private Node next;
 
     public Node() {
         info = null;
-        proximo = null;
+        next = null;
     }
 
-    public void setProximo(Node n){
-        this.proximo = n;
+    public void setNext(Node n){
+        this.next = n;
     }
 
-    public Node getProximo(){
-        return this.proximo;
+    public Node getNext(){
+        return this.next;
     }
 
     public void setInfo(int info){

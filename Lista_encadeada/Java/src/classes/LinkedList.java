@@ -65,8 +65,10 @@ public class LinkedList {
     }
 
     public void insertOrdered(int info){
+        Node newNode = new Node();
+        newNode.setInfo(info);
         if(empty()){
-
+            List = newNode;
         } else {
             if(!isOrdered()){
                 System.out.println("Cannot insert element. The list is not ordered");
@@ -79,14 +81,13 @@ public class LinkedList {
                     actual = actual.getNext();
 
                     if(actual.getInfo() >= info && previous.getInfo() <= info){
-                        Node newNode = new Node();
-
-                        newNode.setInfo(info);
-                        newNode.setNext(actual.getNext());
+                        newNode.setNext(actual);
                         previous.setNext(newNode);
+                        break;
                     }
 
                     if(actual.getNext() == null){
+                        actual.setNext(newNode);
                         break;
                     }
 
@@ -186,20 +187,16 @@ public class LinkedList {
     }
 
     private boolean isOrdered() {
-        Node node = List;
+        Node list = List;
         int firstValue;
         int secondValue;
-        while (true){
+        while (list.getNext() != null) {
 
-            if(node.getNext() == null){
-                break;
-            }
+            firstValue = list.getInfo();
+            list = list.getNext();
+            secondValue = list.getInfo();
 
-            firstValue = node.getInfo();
-            node = node.getNext();
-            secondValue = node.getInfo();
-
-            if(firstValue > secondValue){
+            if (firstValue > secondValue) {
                 return false;
             }
         }

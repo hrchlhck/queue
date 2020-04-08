@@ -7,6 +7,8 @@ Topics:
 - [X] Stack
 - [X] Queue
 - [X] Linked list
+- [X] Stack with dynamic memory allocation 
+- [X] Queue with dynamic memory allocation 
 - [ ] Doubly linked list 
 - [ ] Circular list
 - [ ] Recursive programming and binary search

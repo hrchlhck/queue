@@ -6,7 +6,7 @@ Those topics make up data structure discipline in college.
 Topics:
 - [X] Stack
 - [X] Queue
-- [ ] Linked list (Work in progress)
+- [X] Linked list
 - [ ] Doubly linked list 
 - [ ] Circular list
 - [ ] Recursive programming and binary search

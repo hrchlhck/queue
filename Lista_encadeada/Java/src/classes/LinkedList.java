@@ -24,20 +24,26 @@ public class LinkedList {
     }
 
     public void insertAfter(Node node, int info){
-        Node n = List;
         if(empty()){
-            System.out.println("Empty list");
+            List = node;
+            List.setInfo(info);
         } else {
-            Node aux = List;
-            Node _node = new Node();
-            _node.setInfo(info);
-            while(n != null){
-                if(n.getInfo() == node.getInfo()){
-                    _node.setNext(aux.getNext());
-                    break;
-                }
-                n = n.getNext();
-            }
+            Node actual = List;
+           while(true) {
+               if (actual.getInfo() == node.getInfo()) {
+                   Node aux = new Node();
+                   aux.setInfo(info);
+                   aux.setNext(actual.getNext());
+                   actual.setNext(aux);
+                   break;
+               }
+
+               if(actual.getNext() == null){
+                   System.out.println("Non exist");
+                   break;
+               }
+               actual = actual.getNext();
+           }
         }
     }
 
@@ -47,15 +53,14 @@ public class LinkedList {
         if(empty()){
             List = newNode;
         } else {
-            Node n = List;
-            Node aux;
-            while(n != null){
-                if(n.getNext() == null){
-                    aux = n;
+            Node aux = List;
+            while(true){
+                if(aux.getNext() == null){
+                    aux.setNext(newNode);
+                    break;
                 }
-                n = n.getNext();
+                aux = aux.getNext();
             }
-            List.setNext(newNode);
         }
     }
 
@@ -63,50 +68,99 @@ public class LinkedList {
         if(empty()){
 
         } else {
+            if(!isOrdered()){
+                System.out.println("Cannot insert element. The list is not ordered");
+            } else {
+                Node actual = List;
+                Node previous;
 
+                while(true){
+                    previous = actual;
+                    actual = actual.getNext();
+
+                    if(actual.getInfo() >= info && previous.getInfo() <= info){
+                        Node newNode = new Node();
+
+                        newNode.setInfo(info);
+                        newNode.setNext(actual.getNext());
+                        previous.setNext(newNode);
+                    }
+
+                    if(actual.getNext() == null){
+                        break;
+                    }
+
+                }
+            }
         }
     }
 
     public Node removeFirst() {
-        Node removedNode = null;
+        Node aux = new Node();
         if(empty()){
             System.out.println("Cannot remove non existent node.");
         } else {
-            removedNode = List;
-            removedNode.setNext(null);
+            aux.setInfo(List.getInfo());
+            aux.setNext(List.getNext());
             List = List.getNext();
+
         }
-        return removedNode;
+        return aux;
     }
 
     public Node removeLast(){
-        Node aux = List;
-        Node n = List;
         if(empty()){
             System.out.println("Cannot remove non existent element.");
         } else {
-            while(n != null && aux != null){
-                if(n.getNext() == null){
-                    aux = n;
+            Node actual = List;
+            Node previous = List;
+            Node last = new Node();
+
+            while(true){
+                if(actual.getNext() == null){
+                    last.setInfo(actual.getInfo());
+                    if(last == actual){
+                        List = null;
+                    } else {
+                        previous.setNext(null);
+                    }
+                    return last;
+                } else {
+                    previous = actual;
+                    actual = actual.getNext();
                 }
-                n = n.getNext();
             }
         }
-        return aux;
+        return null;
     }
 
     public Node remove(Node node){
-        Node aux = null;
-        Node n = List;
         if(empty()){
             System.out.println("Cannot remove non existent element.");
         } else {
-            while(node.getInfo() != n.getInfo()){
-                aux = n;
-                n = n.getNext();
+            Node actual = List;
+            Node previous = List;
+            while(true){
+                // Return the removed node
+                if(node.getInfo() == actual.getInfo()){
+                    Node aux = new Node();
+                    aux.setInfo(actual.getInfo());
+                    aux.setNext(actual.getNext());
+                    if(previous == actual){
+                        List = List.getNext();
+                    } else {
+                        previous.setNext(actual.getNext());
+                    }
+                    return aux;
+                }
+                if(actual.getNext() == null){
+                    break;
+                }
+                previous = actual;
+                actual = actual.getNext();
             }
         }
-        return aux;
+        return null;
     }
 
     public void print() {
@@ -129,5 +183,26 @@ public class LinkedList {
             n = n.getNext();
         }
         return size;
+    }
+
+    private boolean isOrdered() {
+        Node node = List;
+        int firstValue;
+        int secondValue;
+        while (true){
+
+            if(node.getNext() == null){
+                break;
+            }
+
+            firstValue = node.getInfo();
+            node = node.getNext();
+            secondValue = node.getInfo();
+
+            if(firstValue > secondValue){
+                return false;
+            }
+        }
+        return true;
     }
 }

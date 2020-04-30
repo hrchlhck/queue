@@ -10,12 +10,12 @@ public class Queue {
     }
 
     public void queue(int data){
-        queue.insertFirst(data);
+        queue.insertLast(data);
     }
 
     public Integer dequeue() {
-        try{
-            return queue.removeLast().getInfo();
+        try {
+            return queue.removeFirst().getInfo();
         } catch (NullPointerException e){
             System.out.println("The queue is empty.");
             return null;
@@ -23,15 +23,13 @@ public class Queue {
     }
 
     public void print() {
-        if(queue.empty()){
+        if(queue.empty())
             System.out.println("The queue is empty.");
-        } else {
+        else
             queue.print();
-        }
     }
 
     public int length() {
         return queue.length();
     }
 }
-

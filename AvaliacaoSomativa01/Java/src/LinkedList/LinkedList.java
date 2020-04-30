@@ -25,8 +25,7 @@ public class LinkedList {
 
     public void insertAfter(Node node, int info){
         if(empty()){
-            List = node;
-            List.setInfo(info);
+            insertFirst(info);
         } else {
             Node actual = List;
            while(true) {
@@ -48,11 +47,11 @@ public class LinkedList {
     }
 
     public void insertLast(int info){
-        Node newNode = new Node();
-        newNode.setInfo(info);
         if(empty()){
-            List = newNode;
+            insertFirst(info);
         } else {
+            Node newNode = new Node();
+            newNode.setInfo(info);
             Node aux = List;
             while(true){
                 if(aux.getNext() == null){
@@ -65,30 +64,32 @@ public class LinkedList {
     }
 
     public void insertOrdered(int info){
-        Node newNode = new Node();
-        newNode.setInfo(info);
         if(empty()){
-            List = newNode;
+            insertFirst(info);
         } else {
             if(!isOrdered()){
                 System.out.println("Cannot insert element. The list is not ordered");
             } else {
+                Node newNode = new Node();
+                newNode.setInfo(info);
                 Node actual = List;
                 Node previous;
+                boolean flagNextNull = true;
+                boolean flagInfoInBetween = true;
 
-                while(true){
+                while(flagNextNull || flagInfoInBetween){
                     previous = actual;
                     actual = actual.getNext();
 
                     if(actual.getInfo() >= info && previous.getInfo() <= info){
                         newNode.setNext(actual);
                         previous.setNext(newNode);
-                        break;
+                        flagInfoInBetween = false;
                     }
 
                     if(actual.getNext() == null){
                         actual.setNext(newNode);
-                        break;
+                        flagNextNull = false;
                     }
 
                 }
@@ -112,6 +113,8 @@ public class LinkedList {
     public Node removeLast(){
         if(empty()){
             System.out.println("Cannot remove non existent element.");
+        } else if (length() == 1) {
+            return removeFirst();
         } else {
             Node actual = List;
             Node previous = List;
@@ -201,12 +204,5 @@ public class LinkedList {
             }
         }
         return true;
-    }
-
-    public Node getFirstNode() {
-        if(!empty()){
-            return List;
-        }
-        return null;
     }
 }

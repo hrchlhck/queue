@@ -1,39 +1,46 @@
 package Structures;
 
 import LinkedList.LinkedList;
+import LinkedList.Node;
 
 public class Stack {
     private LinkedList stack;
+    private Node top;
 
     public Stack(){
         stack = new LinkedList();
+        top = null;
     }
 
     public void stack(int data){
+        top = new Node();
+        top.setInfo(data);
         stack.insertLast(data);
     }
 
-    public int unstack(){
-        if(stack.empty()){
+    public Integer unstack() {
+        if (stack.empty()) {
             System.out.println("The stack is empty.");
+            return null;
+        } else {
+            return stack.removeLast().getInfo();
         }
-        return stack.removeFirst().getInfo();
     }
 
     public Integer top() {
-        try{
-            return stack.getFirstNode().getInfo();
-        } catch (NullPointerException e){
-            System.out.println("The stack is empty.");
+        if (top == null) {
+            System.out.println("The stack is empty");
             return null;
+        } else {
+            return top.getInfo();
         }
     }
 
     public void print() {
-        if(stack.empty()){
+        if(stack.empty())
             System.out.println("The stack is empty.");
-        }
-        stack.print();
+        else
+            stack.print();
     }
 
     public int length() {

@@ -27,4 +27,28 @@ public class Tree {
             return n;
         }
     }
+
+    public int height() {
+        return getHeight(root);
+    }
+
+    private int getHeight(Node r) {
+        if(r == null || (r.getLeft() == null && r.getRight() == null)) {
+            return -1;
+        } else {
+            int rightHeight = 0;
+            int leftHeight = 0;
+
+            if(r.getRight() != null){
+                rightHeight = getHeight(r.getRight()) + 1;
+            } else if(r.getLeft() != null) {
+                leftHeight = getHeight(r.getLeft()) + 1;
+            }
+
+            if(leftHeight > rightHeight){
+                return leftHeight;
+            }
+            return rightHeight;
+        }
+    }
 }

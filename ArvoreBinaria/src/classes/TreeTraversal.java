@@ -16,4 +16,12 @@ public class TreeTraversal {
             System.out.println(tree.getData());
         }
     }
+
+    public static void inOrder(Node tree){
+        if(tree != null){
+            posOrder(tree.getLeft());
+            System.out.println(tree.getData());
+            posOrder(tree.getRight());
+        }
+    }
 }

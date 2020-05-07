@@ -12,7 +12,7 @@ public class Main {
         tree.insert(10);
         tree.insert(8);
 
-        tree.remove(8);
         TreeTraversal.preOrder(tree.getRoot());
+        System.out.println("Height: " + tree.height());
     }
 }

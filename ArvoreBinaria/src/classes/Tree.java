@@ -15,11 +15,19 @@ public class Tree {
         root = insertRecursive(root, data);
     }
 
-    private Node insertRecursive(Node n, int data){
-        if(n == null){
+    public void removeLargest() {
+        root = _removeLargest(root);
+    }
+
+    public void removeSmallest() {
+        root = _removeSmallest(root);
+    }
+
+    private Node insertRecursive(Node n, int data) {
+        if (n == null) {
             return new Node(data);
         } else {
-            if(data >= n.getData()){
+            if (data >= n.getData()) {
                 n.setRight(insertRecursive(n.getRight(), data));
             } else {
                 n.setLeft(insertRecursive(n.getLeft(), data));
@@ -32,23 +40,40 @@ public class Tree {
         return getHeight(root);
     }
 
-    private int getHeight(Node r) {
-        if(r == null || (r.getLeft() == null && r.getRight() == null)) {
+    private int getHeight(Node n) {
+        if(n == null) {
             return -1;
         } else {
-            int rightHeight = 0;
-            int leftHeight = 0;
+            int left = getHeight(n.getLeft());
+            int right = getHeight(n.getRight());
 
-            if(r.getRight() != null){
-                rightHeight = getHeight(r.getRight()) + 1;
-            } else if(r.getLeft() != null) {
-                leftHeight = getHeight(r.getLeft()) + 1;
+            if(left > right) {
+                return left + 1;
             }
+            return right + 1;
+        }
+    }
 
-            if(leftHeight > rightHeight){
-                return leftHeight;
-            }
-            return rightHeight;
+    private Node _removeLargest(Node n) {
+        if(n == null) {
+            return null;
+        } else if(n.getRight() == null) {
+            return n.getLeft();
+        } else {
+            Node temp = n.getRight();
+            n.setRight(_removeLargest(temp));
+            return n;
+        }
+    }
+
+    private Node _removeSmallest(Node n){
+        if(n == null) {
+            return null;
+        } else if(n.getLeft() == null) {
+            return n.getRight();
+        } else {
+            n.setLeft(_removeSmallest(n.getLeft()));
+            return n;
         }
     }
 }

@@ -93,11 +93,10 @@ public class Tree {
         }
 
         if(n.getData() == data) {
-            Node temp;
             if (n.hasNoChildren()) {
                 return null;
             } else if (n.hasBothChildren()) {
-                temp = n.getRight();
+                Node temp = n.getRight();
                 n = getMin(n);
                 n.setRight(temp);
             } else if (n.getLeft() == null) {

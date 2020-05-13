@@ -23,6 +23,10 @@ public class Tree {
         root = _removeSmallest(root);
     }
 
+    public void remove(int data) {
+        root = _remove(root, data);
+    }
+
     private Node insertRecursive(Node n, int data) {
         if (n == null) {
             return new Node(data);
@@ -75,5 +79,42 @@ public class Tree {
             n.setLeft(_removeSmallest(n.getLeft()));
             return n;
         }
+    }
+
+    private Node _remove(Node n, int data) {
+        if(n == null) {
+            return null;
+        }
+
+        if(data >= n.getData()) {
+            n.setRight(_remove(n.getRight(), data));
+        } else {
+            n.setLeft(_remove(n.getLeft(), data));
+        }
+
+        if(n.getData() == data) {
+            Node temp;
+            if (n.hasNoChildren()) {
+                return null;
+            } else if (n.hasBothChildren()) {
+                temp = n.getRight();
+                n = getMin(n);
+                n.setRight(temp);
+            } else if (n.getLeft() == null) {
+                return n.getRight();
+            } else if (n.getRight() == null) {
+                return n.getLeft();
+            }
+        }
+        return n;
+    }
+
+    private Node getMin(Node n) {
+        Node min = null;
+        while(n != null) {
+            min = n;
+            n = n.getLeft();
+        }
+        return min;
     }
 }

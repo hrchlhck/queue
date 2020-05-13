@@ -11,9 +11,13 @@ public class Main {
         tree.insert(8);
         tree.insert(3);
         tree.insert(4);
+        tree.insert(11);
+        tree.insert(13);
+        tree.insert(12);
+        tree.insert(13);
 
         System.out.println("=======================================");
-        tree.remove(8);
-        // TreeTraversal.preOrder(tree.getRoot());
+        tree.removeSmallest();
+        TreeTraversal.preOrder(tree.getRoot());
     }
 }

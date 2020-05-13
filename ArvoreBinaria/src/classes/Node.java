@@ -35,11 +35,7 @@ public class Node {
         return right == null && left == null;
     }
 
-    protected boolean hasOneChildren() {
-        return (right == null && left != null) || (left == null && right != null);
-    }
-
-    protected boolean hasTwoChildren() {
+    protected boolean hasBothChildren() {
         return right != null && left != null;
     }
 }

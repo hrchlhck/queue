@@ -31,6 +31,10 @@ public class Node {
         left = node;
     }
 
+    public void setData(int data) {
+        this.data = data;
+    }
+
     protected boolean hasNoChildren() {
         return right == null && left == null;
     }

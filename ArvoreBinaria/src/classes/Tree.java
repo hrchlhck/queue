@@ -15,16 +15,16 @@ public class Tree {
         root = insertRecursive(root, data);
     }
 
-    public void removeLargest() {
-        root = _removeLargest(root);
+    public Node removeLargest() {
+        return _removeLargest(root);
     }
 
-    public void removeSmallest() {
-        root = _removeSmallest(root);
+    public Node removeSmallest() {
+        return _removeSmallest(root);
     }
 
-    public void remove(int data) {
-        root = _remove(root, data);
+    public Node remove(int data) {
+        return _remove(root, data);
     }
 
     private Node insertRecursive(Node n, int data) {
@@ -70,7 +70,7 @@ public class Tree {
         }
     }
 
-    private Node _removeSmallest(Node n){
+    private Node _removeSmallest(Node n) {
         if(n == null) {
             return null;
         } else if(n.getLeft() == null) {
@@ -96,9 +96,9 @@ public class Tree {
             if (n.hasNoChildren()) {
                 return null;
             } else if (n.hasBothChildren()) {
-                Node temp = n.getRight();
-                n = getMin(n);
-                n.setRight(temp);
+                Node temp = getMin(n.getRight());
+                _remove(n, temp.getData());
+                n.setData(temp.getData());
             } else if (n.getLeft() == null) {
                 return n.getRight();
             } else if (n.getRight() == null) {
@@ -116,4 +116,10 @@ public class Tree {
         }
         return min;
     }
+
+    /*
+    *       10
+    *      2  12
+    *
+    * */
 }

@@ -14,10 +14,7 @@ public class Main {
         t.insert(9);
         t.insert(10);
         t.preOrder();
-        System.out.println("=====");
-        t.remove(4);
-        t.remove(5);
-        t.remove(6);
-        t.preOrder();
+
+        System.out.println("Height: " + t.height());
     }
 }

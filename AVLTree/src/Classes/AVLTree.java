@@ -129,7 +129,7 @@ public class AVLTree {
                 return n.getLeft();
             }
         }
-        return n;
+        return _rotate(n);
     }
 
     private Node getMin(Node n) {

@@ -12,8 +12,8 @@ Topics:
 - [ ] ~~Doubly linked list~~
 - [ ] ~~Circular list~~
 - [X] Recursive programming and binary search
-- [ ] Binary tree
-- [ ] AVL tree
+- [X] Binary tree
+- [X] AVL tree
 - [ ] Hash table
 - [ ] Sorting algorithms 1
 - [ ] Sorting algorithms 2

@@ -24,7 +24,7 @@ public class AVLTree {
     public int height() {
         if(root == null)
             return -1;
-        return root.height();
+        return root.getHeight();
     }
 
     public void inOrder() {
@@ -35,7 +35,7 @@ public class AVLTree {
         _preOrder(root);
     }
 
-    public void posOrder() {
+    public void postOrder() {
         _postOrder(root);
     }
 
@@ -51,6 +51,47 @@ public class AVLTree {
         return actual != null;
     }
 
+    private Node _rotateRight(Node root) {
+        Node newRoot = root.getLeft();
+        Node temp = newRoot.getRight();
+        newRoot.setRight(root);
+        root.setLeft(temp);
+
+        return newRoot;
+    }
+
+    private Node _rotateLeft(Node root) {
+        Node newRoot = root.getRight();
+        Node temp = newRoot.getLeft();
+        newRoot.setLeft(root);
+        root.setRight(temp);
+
+        return newRoot;
+    }
+
+    private Node _rotate(Node root) {
+        int balanceFactor1 = Node.balanceFactor(root);
+        int balanceFactor2;
+        if(balanceFactor1 > 1) {
+            balanceFactor2 = Node.balanceFactor(root.getRight());
+            if(balanceFactor2 > 0) {
+                root = _rotateRight(root);
+            } else {
+                root.setRight(_rotateRight(root.getRight()));
+                root = _rotateLeft(root);
+            }
+        } else if(balanceFactor1 < -1) {
+            balanceFactor2 = Node.balanceFactor(root.getLeft());
+            if(balanceFactor2 > 0) {
+                root.setLeft(_rotateLeft(root.getLeft()));
+                root = _rotateRight(root);
+            } else {
+                root = _rotateLeft(root);
+            }
+        }
+        return root;
+    }
+
     private Node _insert(Node root, int data) {
         if (root == null) {
             return new Node(data);
@@ -60,7 +101,7 @@ public class AVLTree {
             } else {
                 root.setLeft(_insert(root.getLeft(), data));
             }
-            return root;
+            return _rotate(root);
         }
     }
 

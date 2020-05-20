@@ -35,12 +35,15 @@ public class Node {
         this.data = data;
     }
 
-    public int height() {
+    public int getHeight() {
         return _height(this);
     }
 
-    public int balanceFactor() {
-        return _height(this.getLeft()) - _height(this.getRight());
+    public static int balanceFactor(Node node) {
+        if(node == null) {
+            return -1;
+        }
+        return _height(node.getLeft()) - _height(node.getRight());
     }
 
     public boolean hasNoChildren() {
@@ -51,7 +54,7 @@ public class Node {
         return left != null && right != null;
     }
 
-    private int _height(Node node) {
+    private static int _height(Node node) {
         if(node == null) {
             return -1;
         } else {

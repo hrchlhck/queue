@@ -9,11 +9,9 @@ Topics:
 - [X] Linked list
 - [X] Stack with dynamic memory allocation 
 - [X] Queue with dynamic memory allocation 
-- [ ] ~~Doubly linked list~~
-- [ ] ~~Circular list~~
 - [X] Recursive programming and binary search
 - [X] Binary tree
 - [X] AVL tree
-- [ ] Hash table
+- [X] Hash table
 - [ ] Sorting algorithms 1
 - [ ] Sorting algorithms 2

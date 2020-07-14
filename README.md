@@ -13,5 +13,4 @@ Topics:
 - [X] Binary tree
 - [X] AVL tree
 - [X] Hash table
-- [ ] Sorting algorithms 1
-- [ ] Sorting algorithms 2
+- [X] Sorting algorithms 1
